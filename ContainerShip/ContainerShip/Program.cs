@@ -1,3 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ContainerShip;
+using ContainerShip.Containers;
 
-Console.WriteLine("Hello, World!");
+
+// var container = new Container(10.0, 5.0);
+
+// 
