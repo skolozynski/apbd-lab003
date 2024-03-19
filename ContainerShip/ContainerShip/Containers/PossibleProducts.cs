@@ -2,6 +2,6 @@
 
 public enum PossibleProducts
 {
-    Banana,
-    Chocolate
+    BANANA,
+    CHOCOLATE
 }
