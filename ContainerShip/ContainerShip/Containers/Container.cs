@@ -1,4 +1,5 @@
-﻿using ContainerShip.Exceptions;
+﻿using System.Runtime.InteropServices;
+using ContainerShip.Exceptions;
 using ContainerShip.Interfaces;
 
 namespace ContainerShip.Containers;
@@ -6,22 +7,32 @@ namespace ContainerShip.Containers;
 public abstract class Container : IContainer
 {
     public double CargoWeight { get; set; }
+    public double MaxCargoWeight { get; set; }
     public double Height { get; set; }
+    public double ContainerWeight { get; set; }
+    public double Depth { get; set; }
+    public string SerialNumber { get; set; } // KON-C-1
+    private static int _serialNumberCounter = 1;
 
-    
-    protected Container(double cargoWeight, double height)
+
+    protected Container(double maxCargoWeight, double height, double containerWeight, double depth, string serialNumber)
     {
-        CargoWeight = cargoWeight;
+        MaxCargoWeight = maxCargoWeight;
         Height = height;
+        ContainerWeight = containerWeight;
+        Depth = depth;
+        SerialNumber = serialNumber;
     }
 
-    public void Unload()
+    public virtual void Unload()
     {
-        throw new NotImplementedException();
+        CargoWeight = 0;
     }
 
     public virtual void Load(double cargoWeight)
     {
-        throw new OverfillException();
+        if (CargoWeight > MaxCargoWeight)
+            throw new OverfillException("Max weight overfilled!");
+        CargoWeight = cargoWeight;
     }
 }
