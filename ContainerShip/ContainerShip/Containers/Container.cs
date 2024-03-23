@@ -21,7 +21,7 @@ public abstract class Container : IContainer
         Height = height;
         ContainerWeight = containerWeight;
         Depth = depth;
-        SerialNumber = serialNumber;
+        SerialNumber = serialNumber + "-" + _serialNumberCounter++;
     }
 
     public virtual void Unload()
@@ -34,5 +34,10 @@ public abstract class Container : IContainer
         if (CargoWeight > MaxCargoWeight)
             throw new OverfillException("Max weight overfilled!");
         CargoWeight = cargoWeight;
+    }
+
+    public override string ToString()
+    {
+        return SerialNumber + " " + (CargoWeight + CargoWeight) + "t ";
     }
 }
